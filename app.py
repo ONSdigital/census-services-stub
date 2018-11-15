@@ -14,6 +14,7 @@ def show_iac_data():
 	PrintLogger().info("Now in the show_iac_data function")
 	my_iac_stub = Iac_Stub()
 	data = Iac_Stub.get_iac_stub(my_iac_stub)
+	PrintLogger().info("Data returned successfully")
 	return data
 
 if __name__ == '__main__':

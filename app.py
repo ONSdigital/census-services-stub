@@ -4,6 +4,7 @@ from structlog import PrintLogger  # added by EC
 
 from flask import Flask
 from iac_stub import Iac_Stub
+from flask import Response
 
 app = Flask(__name__)
 
@@ -19,7 +20,7 @@ def show_iac_data():
     my_iac_stub = Iac_Stub()
     data = Iac_Stub.get_iac_stub(my_iac_stub)
     PrintLogger().info("Data returned successfully")
-    return json.dumps(data)
+    return Response(json.dumps(data, separators=(',', ':')), mimetype='application/json')
 
 # @app.route('/iacs/b4t7g3xby5bx')
 # def stub_iac_data():

@@ -1,4 +1,7 @@
 import logging
+import json
+import datetime
+import time
 
 from structlog import wrap_logger
 from structlog import PrintLogger #added by EC
@@ -12,6 +15,22 @@ class Iac_Stub:
 
     def get_iac_stub(self):
         PrintLogger().info("Now in the get_iac_stub function")
-        iac_fixed_response = '{"caseId": "0337c579-ce9d-4357-a620-5e4c565cfac1", "caseRef": "1000000000000002", "iac": "b4t7g3xby5bx","active": True, "questionSet": None, "lastUsedDateTime": 1542287779444}'
+        time_in_UTC = time.time() + time.timezone
+        time_UTC_millis = round(time_in_UTC * 1000)
+        iac_fixed_response = {'caseId':'0337c579-ce9d-4357-a620-5e4c565cfac1',
+                              'caseRef':'1000000000000002',
+                              'iac':'b4t7g3xby5bx',
+                              'active':True,
+                              'questionSet':None,
+                              'lastUsedDateTime':time_UTC_millis}
         PrintLogger().info("Now returning the iac fixed response: " + repr(iac_fixed_response))
         return iac_fixed_response
+
+    #datetime.datetime(2018, 11, 19, 15, 42, 28, 777944).isoformat()
+
+    # def get_iac_stub(self):
+    #     PrintLogger().info("Now in the get_iac_stub function. The date and time is " + datetime.date.today().isoformat())
+    #     iac_fixed_response = {'caseId': '0337c579-ce9d-4357-a620-5e4c565cfac1', 'caseRef': '1000000000000002',
+    #                           'iac': 'b4t7g3xby5bx', 'active': True, 'questionSet': None}
+    #     PrintLogger().info("Now returning the iac fixed response: " + repr(iac_fixed_response))
+    #     return iac_fixed_response

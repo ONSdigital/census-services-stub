@@ -1,7 +1,7 @@
 import logging
 
 from structlog import wrap_logger
-from structlog import PrintLogger #added by EC
+from structlog import PrintLogger
 
 logger = wrap_logger(logging.getLogger("case-stub"))
 

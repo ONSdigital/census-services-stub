@@ -21,28 +21,19 @@ def show_case_data():
     my_case_stub = Case_Stub()
     data = Case_Stub.get_case_stub(my_case_stub)
     PrintLogger().info("Data returned successfully")
-    return Response(json.dumps(data, separators=(',', ':')), mimetype='application/json')
-
-
-# @app.route('/cases/0337c579-ce9d-4357-a620-5e4c565cfac1/events', methods=['GET'])
-# def show_data_for_eq():
-#     PrintLogger().info("Now in the show_data_for_eq function")
-#     data = {'client_ip': None, 'event': 'Redirecting to eQ', 'level': 'info', 'service': 'respondent-home', 'created_at': '2018-11-27T12:331543322028'}
-#     data_as_json = json.dumps(data, separators=(',', ':'))
-#     return Response(data_as_json, mimetype='application/json')
+    data_as_json = json.dumps(data, separators=(',', ':'))
+    return Response(data_as_json, mimetype='application/json')
 
 
 @app.route('/cases/0337c579-ce9d-4357-a620-5e4c565cfac1/events', methods=['GET', 'POST'])
 def result():
     PrintLogger().info("Now in the result function")
     PrintLogger().info("The request is: " + str(request))
-    data = {'client_ip': None, 'event': 'Redirecting to eQ', 'level': 'info', 'service': 'respondent-home',
-            'created_at': '2018-11-27T12:331543322028'}
+    my_case_stub = Case_Stub()
+    data = Case_Stub.get_reponse_for_eq_stub(my_case_stub)
     data_as_json = json.dumps(data, separators=(',', ':'))
     PrintLogger().info("Now returning the response to forward to EQ")
     return Response(data_as_json, mimetype='application/json')
-
- #print(request.form['item1', 'item2', 'item3']) # should display the values from these
 
 
 if __name__ == '__main__':

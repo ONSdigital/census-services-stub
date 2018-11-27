@@ -32,3 +32,14 @@ class Case_Stub:
                                'caseEvents':None}
         PrintLogger().info("Now returning the case fixed response: " + repr(case_fixed_response))
         return case_fixed_response
+
+
+    def get_reponse_for_eq_stub(self):
+        fixed_response_for_eq =  {'client_ip': None,
+                                  'event': 'Redirecting to eQ',
+                                  'level': 'info',
+                                  'service': 'respondent-home',
+                                  'created_at': '2018-11-27T12:331543322028'}
+        PrintLogger().info("Now returning the fixed response for EQ: " + repr(fixed_response_for_eq))
+        return fixed_response_for_eq
+

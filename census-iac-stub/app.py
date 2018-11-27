@@ -11,18 +11,21 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
+    """Print text to show that the application is responding"""
     return "Hello from Census IAC Stub!"
 
 
-"""The value of <section> can be any iac that the user enters. However, the response will ignore the value of <section>
- and instead take the iac value to be this fixed iac value: b4t7g3xby5bx"""
 @app.route('/iacs/<section>')
 def show_iac_data(section):
+    """Show the fixed IAC json data that is produced by this iac stub. The json data should be shown at the URL http://localhost:8121/iacs/<section>
+    The value of <section> can be any iac that the user enters. However the fixed json response will ignore the value of <section>, for the iac,
+    and instead take the iac value to be this fixed value: b4t7g3xby5bx
+    """
     PrintLogger().info("Now in the show_iac_data function. Section is: " + section)
     my_iac_stub = Iac_Stub()
-    data = Iac_Stub.get_iac_stub(my_iac_stub)
+    data = Iac_Stub.get_iac_stub(my_iac_stub) # get the fixed response as a dictionary object
     PrintLogger().info("Data returned successfully")
-    data_as_json = json.dumps(data, separators=(',', ':'))
+    data_as_json = json.dumps(data, separators=(',', ':')) # convert the dictionary object to a json object
     return Response(data_as_json, mimetype='application/json')
 
 

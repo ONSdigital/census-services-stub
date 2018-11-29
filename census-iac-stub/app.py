@@ -18,8 +18,7 @@ def hello():
 @app.route('/iacs/<section>')
 def show_iac_data(section):
     """Show the fixed IAC json data that is produced by this iac stub. The json data should be shown at the URL http://localhost:8121/iacs/<section>
-    The value of <section> can be any iac that the user enters. However the fixed json response will ignore the value of <section>, for the iac,
-    and instead take the iac value to be this fixed value: b4t7g3xby5bx
+    The value of <section> can be any iac that the user enters.
     """
     PrintLogger().info("Now in the show_iac_data function. Section is: " + section)
     my_iac_stub = Iac_Stub()

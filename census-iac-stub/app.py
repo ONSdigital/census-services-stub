@@ -23,7 +23,7 @@ def show_iac_data(section):
     """
     PrintLogger().info("Now in the show_iac_data function. Section is: " + section)
     my_iac_stub = Iac_Stub()
-    data = Iac_Stub.get_iac_stub(my_iac_stub) # get the fixed response as a dictionary object
+    data = Iac_Stub.get_iac_stub(my_iac_stub, section) # get the fixed response as a dictionary object
     PrintLogger().info("Data returned successfully")
     data_as_json = json.dumps(data, separators=(',', ':')) # convert the dictionary object to a json object
     return Response(data_as_json, mimetype='application/json')

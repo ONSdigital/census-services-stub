@@ -11,6 +11,7 @@ class Case_Stub:
         self.case_fixed_response = None
 
     def get_case_stub(self):
+        """Create the fixed case response as a Python dictionary object. This can then be converted to a json object later on."""
         case_fixed_response = {'state':'ACTIONABLE',
                                'id':'0337c579-ce9d-4357-a620-5e4c565cfac1',
                                'actionPlanId':'2cf85a97-8945-453b-a6e8-17668b44f93d',
@@ -32,3 +33,15 @@ class Case_Stub:
                                'caseEvents':None}
         PrintLogger().info("Now returning the case fixed response: " + repr(case_fixed_response))
         return case_fixed_response
+
+
+    def get_reponse_for_eq_stub(self):
+        """Create the fixed response, to forward to EQ, as a Python dictionary object. This can then be converted to a json object later on."""
+        fixed_response_for_eq =  {'client_ip': None,
+                                  'event': 'Redirecting to eQ',
+                                  'level': 'info',
+                                  'service': 'respondent-home',
+                                  'created_at': '2018-11-27T12:331543322028'}
+        PrintLogger().info("Now returning the fixed response for EQ: " + repr(fixed_response_for_eq))
+        return fixed_response_for_eq
+

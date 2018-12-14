@@ -12,11 +12,11 @@ Run -> Edit Configurations -> Run -> Environment Variables
 and add the following
  
 NAME							VALUE
-* COLLECTION_INSTRUMENT_URL 	http://localhost:8125\
-* SAMPLE_URL					http://localhost:8125\
-* COLLECTION_EXERCISE_URL		http://localhost:8125\
-* CASE_URL						http://localhost:8125\
-* IAC_URL						http://localhost:8125\
+* COLLECTION_INSTRUMENT_URL 	http://localhost:8125
+* SAMPLE_URL					http://localhost:8125
+* COLLECTION_EXERCISE_URL		http://localhost:8125
+* CASE_URL						http://localhost:8125
+* IAC_URL						http://localhost:8125
 
 ## Services and Calls handled by the stub
 The following route handlers are implemented in the stub application.

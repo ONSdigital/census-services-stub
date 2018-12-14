@@ -66,26 +66,31 @@ def get_collex_instr_details(version, collexinstrid):
 
     return Response(json_data, mimetype='application/json')
 
-@app.route('/cases/<dummy>')
-def fallback(dummy):
-    my_case_stub = Case_Stub(dummy)
+""" Route handler to deal with getting caseid  details from the case service. 
+The caseid could be any caseid that is passed in """
+
+@app.route('/cases/<caseid>')
+def getcasedetails(caseid):
+    my_case_stub = Case_Stub(caseid)
     data = Case_Stub.get_case_stub(my_case_stub)
 
     return Response(data, mimetype='application/json')
 
 
-@app.route('/cases/<dummy>/events', methods = ['POST'])
-def fallbackevents(dummy):
-    my_case_stub = Case_Stub(dummy)
+@app.route('/cases/<caseid>/events', methods = ['POST'])
+def postcaseevent(caseid):
+    my_case_stub = Case_Stub(caseid)
     data = Case_Stub.post_case_stub(my_case_stub)
 
 
     return Response(data, mimetype='application/json')
 
+""" Route handler to deal with getting details from the iac service. 
+The iaccode could be any iaccode that is passed in """
 
-@app.route('/iacs/<dummy>')
-def get_case_details_from_iac(dummy):
-    my_iac_stub = Iac_Stub(dummy)
+@app.route('/iacs/<iaccode>')
+def get_case_details_from_iac(iaccode):
+    my_iac_stub = Iac_Stub(iaccode)
     data = Iac_Stub.get_iac_stub_for_all(my_iac_stub)
 
     return Response(data, mimetype='application/json')

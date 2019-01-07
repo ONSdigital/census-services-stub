@@ -7,6 +7,7 @@ from case_stub import Case_Stub
 from iac_stub import Iac_Stub
 
 import logging
+import json
 app = Flask(__name__)
 
 #override the default logging configuration so that info messages get output
@@ -88,12 +89,28 @@ def postcaseevent(caseid):
 """ Route handler to deal with getting details from the iac service. 
 The iaccode could be any iaccode that is passed in """
 
+# @app.route('/iacs/<iaccode>')
+# def get_case_details_from_iac(iaccode):
+#     my_iac_stub = Iac_Stub(iaccode)
+#     data = Iac_Stub.get_iac_stub_for_all(my_iac_stub)
+#
+#     return Response(data, mimetype='application/json')
+
 @app.route('/iacs/<iaccode>')
 def get_case_details_from_iac(iaccode):
     my_iac_stub = Iac_Stub(iaccode)
-    data = Iac_Stub.get_iac_stub_for_all(my_iac_stub)
+    data_dict = Iac_Stub.get_iac_stub_for_all(my_iac_stub)
+    #test to see if first key in dict is error or not
+    data_keys = list(data_dict)
+    firstKey = str(data_keys[0])
+    logging.info("The first key in the list is: " + firstKey)
+    data = json.dumps(data_dict)
+    if (firstKey == "error"):
+        statToReturn = 404
+    else:
+        statToReturn = 200
 
-    return Response(data, mimetype='application/json')
+    return Response(data, status=statToReturn, mimetype='application/json')
 
 
 if __name__=='__main__':

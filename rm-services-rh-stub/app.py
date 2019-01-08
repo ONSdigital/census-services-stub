@@ -89,15 +89,11 @@ def postcaseevent(caseid):
 """ Route handler to deal with getting details from the iac service. 
 The iaccode could be any iaccode that is passed in """
 
-# @app.route('/iacs/<iaccode>')
-# def get_case_details_from_iac(iaccode):
-#     my_iac_stub = Iac_Stub(iaccode)
-#     data = Iac_Stub.get_iac_stub_for_all(my_iac_stub)
-#
-#     return Response(data, mimetype='application/json')
-
 @app.route('/iacs/<iaccode>')
 def get_case_details_from_iac(iaccode):
+    """ Route handler to deal with getting details from the iac service.
+    The iaccode passed in must be either vvvvvvvvvvvv or wwwwwwwwwwww
+    otherwise a 404 status will be returned to indicate an invalid UAC"""
     my_iac_stub = Iac_Stub(iaccode)
     data_dict = Iac_Stub.get_iac_stub_for_all(my_iac_stub)
     #test to see if first key in dict is error or not
